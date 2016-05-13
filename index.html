@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+<link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
+<link href='https://fonts.googleapis.com/css?family=Orbitron:700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+  <script src="https://code.jquery.com/jquery-2.2.3.js"   integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="   crossorigin="anonymous"></script>
+  <script src="main.js" charset="utf-8"></script>
+  <div class = "info"> </div>
+
+
+<div class = 'menu'>
+  <h1> THE SALTY SLUG </h1>
+  <h3> Arrow Keys to Move<br>Space Bar to Pause </h3>
+  <h2> SPEED </h2>
+  <div class = "speeds">
+  <input type="radio" class = 'difficultyBox modifier' id='easy' name = 'difficulty' value='easy' > Slow
+  <input type="radio" class = 'difficultyBox modifier' id='normal' name = 'difficulty' value='normal' checked> Normal
+  <input type="radio" class = 'difficultyBox modifier' id='fast' name = 'difficulty' value='hard'> Fast <br>
+</div>
+
+  <h2> WALLS </h2>
+<div class = "speeds">
+  <input type="radio" class = "wallsBox modifier" name = "walls" id = "wallsOn" value = "on"> ON
+  <input type="radio" class = "wallsBox modifier" name = "walls" id = "wallsOff" value = "off" checked > OFF
+</div>
+
+  <div  class = "score"> <p> <span class = "score-title"> Score Multiplier: </span> <span class = "score-multiplier"> 1</span><span> x </span> <p> </div>
+
+  <span style = "padding-left: 40px "><img style = "width: 500px;" src = "play_button.png" class = "play-button"> </span>
+</div>
+
+</body>
+</html>
