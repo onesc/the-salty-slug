@@ -573,12 +573,17 @@ $( document ).ready(function() {
 
   updateMultiplier();
 
+});
 
-  var mc = new Hammer($(".info"));
+
+
+var myElement = document.getElementById('myElement');
+
+// create a simple instance
+// by default, it only adds horizontal recognizers
+var mc = new Hammer(myElement);
 
 // listen to events...
-    mc.on("panleft panright panup pandown tap press", function(ev) {
-        $(".info").textContent = ev.type +" gesture detected.";
-    });
-
+mc.on("panleft panright panup pandown tap press", function(ev) {
+    myElement.textContent = ev.type +" gesture detected.";
 });
