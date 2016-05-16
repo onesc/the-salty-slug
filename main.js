@@ -171,7 +171,7 @@ var showScore = function() {
 
         ctx.font = "22px verdana";
         ctx.strokeStyle = "#FFF";
-        ctx.strokeText("Press Space to Play Again", 250, 600);
+        ctx.strokeText("Press Space or Tap the Screen to Play Again", 150, 600);
 
 
         ctx.font = "19px verdana";
@@ -370,21 +370,21 @@ addEventListener("keydown", function (e) {
     if (32 === keyLastPressed) {
 
       if (gameStarted === true) {
-    if (gameOver === false) {
-        if (gamePaused === false) {
-          clearInterval(gameRunning);
-          gamePaused = true;
-          ctx.globalAlpha = 0.5;
-          ctx.drawImage(pauseImage, 100, 270, 600, 200);
-        } else {
-          ctx.globalAlpha = 1;
-          main();
-          gamePaused = false;
-        }
-      } else {
-        stopGame();
-        gameOver = false;
-        startGame();
+          if (gameOver === false) {
+              if (gamePaused === false) {
+                clearInterval(gameRunning);
+                gamePaused = true;
+                ctx.globalAlpha = 0.5;
+                ctx.drawImage(pauseImage, 100, 270, 600, 200);
+              } else {
+                ctx.globalAlpha = 1;
+                main();
+                gamePaused = false;
+              }
+            } else {
+              stopGame();
+              gameOver = false;
+              startGame();
 
       }
     }
@@ -579,24 +579,35 @@ $( document ).ready(function() {
   var mc = new Hammer(window);
 
   // listen to events...
-  mc.on("panleft panright panup pandown", function(ev) {
+  mc.on("swipeleft swiperight panup pandown tap", function(ev) {
 
     keyLastPressed = ev.type;
 
+    if (gameOver === true && gameStarted === true) {
+      if (ev.type === "tap") {
+        stopGame();
+        gameOver = false;
+        startGame();
+      }
+    }
+
+    if (ev.type === "swipe") {
+      console.log("swiped up");
+    }
 
     if (gamePaused === false) {
           if ((keyLastPressed === "panup") && (direction !== "down")) {  // if you press the Up key, and cherrys direction is not currently down
-
+            console.log("swiped up");
             validKey = 38;                                          // change the key input to Up
           }
           if (("pandown" === keyLastPressed)&& (direction !== "up")) {
-
+            console.log("swiped down");
             validKey = 40; // down
           }
-          if (("panleft" === keyLastPressed) && (direction !== "right")) {
+          if (("swipeleft" === keyLastPressed) && (direction !== "right")) {
             validKey = 37; // left
           }
-          if (("panright" === keyLastPressed) &&(direction !== "left")) {
+          if (("swiperight" === keyLastPressed) &&(direction !== "left")) {
             validKey = 39; // right
           }
         }
@@ -604,16 +615,16 @@ $( document ).ready(function() {
 
 
     //
-    // if (ev.type === "panleft") {
+    // if (ev.type === "swipeleft") {
     // keyLastPressed = 37;
     // }
-    // if (ev.type === "panright") {
+    // if (ev.type === "swiperight") {
     // keyLastPressed = 39;
     // }
-    // if (ev.type === "panup") {
+    // if (ev.type === "swipeup") {
     // keyLastPressed = 38;
     // }
-    // if (ev.type === "pandown") {
+    // if (ev.type === "swipedown") {
     // keyLastPressed = 40;
     // }
 
@@ -621,6 +632,6 @@ $( document ).ready(function() {
 
 
 
-      myElement.textContent = ev.type +" gesture detected.";
+      // myElement.textContent = ev.type +" gesture detected.";
   });
 });
