@@ -576,10 +576,51 @@ $( document ).ready(function() {
 
   // create a simple instance
   // by default, it only adds horizontal recognizers
-  var mc = new Hammer(myElement);
+  var mc = new Hammer(window);
 
   // listen to events...
-  mc.on("panleft panright panup pandown tap press", function(ev) {
+  mc.on("panleft panright panup pandown", function(ev) {
+
+    keyLastPressed = ev.type;
+
+
+    if (gamePaused === false) {
+          if ((keyLastPressed === "panup") && (direction !== "down")) {  // if you press the Up key, and cherrys direction is not currently down
+
+            validKey = 38;                                          // change the key input to Up
+          }
+          if (("pandown" === keyLastPressed)&& (direction !== "up")) {
+
+            validKey = 40; // down
+          }
+          if (("panleft" === keyLastPressed) && (direction !== "right")) {
+            validKey = 37; // left
+          }
+          if (("panright" === keyLastPressed) &&(direction !== "left")) {
+            validKey = 39; // right
+          }
+        }
+
+
+
+    //
+    // if (ev.type === "panleft") {
+    // keyLastPressed = 37;
+    // }
+    // if (ev.type === "panright") {
+    // keyLastPressed = 39;
+    // }
+    // if (ev.type === "panup") {
+    // keyLastPressed = 38;
+    // }
+    // if (ev.type === "pandown") {
+    // keyLastPressed = 40;
+    // }
+
+
+
+
+
       myElement.textContent = ev.type +" gesture detected.";
   });
 });
