@@ -572,18 +572,14 @@ $( document ).ready(function() {
   });
 
   updateMultiplier();
+  var myElement = document.getElementById('myElement');
 
-});
+  // create a simple instance
+  // by default, it only adds horizontal recognizers
+  var mc = new Hammer(myElement);
 
-
-
-var myElement = document.getElementById('myElement');
-
-// create a simple instance
-// by default, it only adds horizontal recognizers
-var mc = new Hammer(myElement);
-
-// listen to events...
-mc.on("panleft panright panup pandown tap press", function(ev) {
-    myElement.textContent = ev.type +" gesture detected.";
+  // listen to events...
+  mc.on("panleft panright panup pandown tap press", function(ev) {
+      myElement.textContent = ev.type +" gesture detected.";
+  });
 });
