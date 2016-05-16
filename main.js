@@ -571,6 +571,14 @@ $( document ).ready(function() {
     console.log("you clicked the play button");
   });
 
-      updateMultiplier();
+  updateMultiplier();
+
+
+  var mc = new Hammer($(".info"));
+
+// listen to events...
+    mc.on("panleft panright panup pandown tap press", function(ev) {
+        $(".info").textContent = ev.type +" gesture detected.";
+    });
 
 });
