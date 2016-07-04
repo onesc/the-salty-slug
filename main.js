@@ -6,7 +6,7 @@
 // add a difficult setting screen
 // add a score calculator and score meter
 // store score in local storage
-
+var gitTest;
 // posssible allow player to set width
 var highscore = localStorage.getItem("highscore");
 
